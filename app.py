@@ -13,25 +13,10 @@ SMTP_PASS = os.getenv("SMTP_PASS")
 TEST_MAIL = os.getenv("TEST_MAIL")
 FROM_NAME = os.getenv("FROM_NAME", "Flask Mailer")
 
-ATTACHMENT_PATH = "sample_media.txt"
-
-
-def create_sample_media():
-    """Creates a text file to attach, if it doesn’t already exist."""
-    if not os.path.exists(ATTACHMENT_PATH):
-        with open(ATTACHMENT_PATH, "w", encoding="utf-8") as f:
-            f.write(
-                "Sample Media File\n"
-                "------------------\n"
-                "This is an auto-generated file used only for testing mail attachment.\n"
-                "No personal images or user-provided media.\n"
-            )
+ATTACHMENT_PATH = "requirements.txt"
 
 
 def send_test_email():
-    # Ensure sample attachment exists
-    create_sample_media()
-
     msg = EmailMessage()
     msg["Subject"] = "Flask Test Email (SMTP 587)"
     msg["From"] = f"{FROM_NAME} <{SMTP_USER}>"
